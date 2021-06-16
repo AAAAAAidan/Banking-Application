@@ -1,8 +1,9 @@
 package BankingApplication;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
@@ -10,122 +11,87 @@ public class Main {
 	// TODO
 	// Add comments
 	// Add account selection
-	// Add main account view and edit
-	// Reduce redundancy in main
+	// Add JSON save file
 	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, 
 												  IllegalArgumentException, InvocationTargetException, 
 												  NoSuchMethodException, SecurityException, ClassNotFoundException {
 		
-		String[] menuTitles = {
-			"Banking Application",
-			"Checking Account",
-			"Savings Account",
-			"Privileged Account",
-			"Credit Card",
-		};
-		
-		String[] mainMenuOptions = {
-			"Checking Account",
-			"Savings Account",
-			"Privileged Account",
-			"Credit Card",
-			"Exit"
-		};
-					
-		String[] subMenuOptions = {
-			"View ACCOUNT balance",
-			"Deposit to ACCOUNT",
-			"Withdraw from ACCOUNT",
-			"New ACCOUNT",
-			"Back"
-		};
-					
-		String[] subMenuActions = {
-			null,
-			"display",
-			"deposit",
-			"withdraw",
-			"initialize"
-		};
-		
-		Account mainAccount = new Account();
-		mainAccount.initialize();
 		HashMap<String, List<Account>> accountMap = new HashMap<String, List<Account>>();
-		int menuIndex = 0;
-		String[] options = new String[5];
 		
-		while (menuIndex >= 0) {
+		Console.printHeader("Create Account");
+		Account mainAccount = new Account();
+		mainAccount.edit();
+		Account[] newMainAccount = {mainAccount};
+		accountMap.put(Account.getMenuTitle(), Arrays.asList(newMainAccount));
+		
+		String choice = null;
+		String address = "BankingApplication.Account";
+		String method = "view";
+		
+		while (address != null) {
+			Account menuClass = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
+			String menuTitle = (String) menuClass.getClass().getMethod("getMenuTitle").invoke(menuClass);
+			String[][] menuItems = (String[][]) menuClass.getClass().getMethod("getMenuItems").invoke(menuClass);
+			String[] menuChoices = new String[menuItems.length];
+			String[] menuAddresses = new String[menuItems.length];
+			String[] menuMethods = new String[menuItems.length];
 			
-			if (menuIndex == 0) {
-				options = mainMenuOptions;
+			for (int i = 0; i < menuItems.length; i++) {
+				menuChoices[i] = menuItems[i][0];
+				menuAddresses[i] = menuItems[i][1];
+				menuMethods[i] = menuItems[i][2];
 			}
-			else {
-				options = subMenuOptions;
+			
+			Console.printHeader(menuTitle);
+			Console.printList(menuChoices);
+			
+			int inputIndex = Input.getSelectionIndex(menuChoices);
+			
+			choice = menuChoices[inputIndex];
+			address = menuAddresses[inputIndex];
+			method = menuMethods[inputIndex];
+			
+			if (choice == "Exit") {
+				Console.printHeader("Exiting Program");
+				address = null;
 			}
-			
-			System.out.println("\n------- " + menuTitles[menuIndex] + " ------- \n");
-			System.out.println("Select from the following:");
-			String[] validInputs = new String[options.length];
-			String title = menuTitles[menuIndex];
-			int i = 0;
-			
-			while (i < options.length) {
-				String option = options[i].replaceAll("ACCOUNT", title.toLowerCase());
-				validInputs[i++] = Integer.toString(i);
-				System.out.println("\t" + i + " - " + option);
+			else if (choice == "Back") {
+				address = "BankingApplication.Account";
 			}
-			
-			int inputIndex = Integer.parseInt(Input.getInput("[" + String.join("", validInputs) + "]"));
-			
-			if (inputIndex == options.length) {
+			else if (method != null) {
+				Console.printHeader(choice);
+				List<Account> accounts = accountMap.get(menuTitle);
 				
-				if (options[inputIndex-1] == "Exit") {
-					System.out.println("\n------- Exiting Program -------\n");
-					menuIndex = -1;
-				}
-				else {
-					menuIndex = 0;
-				}
-				
-			}
-			else if (!title.equals(menuTitles[0])) {
-				
-				System.out.println("\n------- " + options[inputIndex-1].replaceAll("ACCOUNT", title.toLowerCase()) + " -------\n");
-				String className = "BankingApplication." + title.replaceAll(" ", "");
-				
-				if (subMenuActions[inputIndex].equals(subMenuActions[subMenuActions.length-1])) {
-					Account account = (Account) Class.forName(className).getDeclaredConstructor().newInstance();
+				if (method.equals(menuTitle.replaceAll(" ", ""))) {
+					Account account = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
 					
-					if (accountMap.get(className) == null) {
-						LinkedList<Account> list = new LinkedList<Account>();
-						list.add(account);
-						accountMap.put(className, list);
+					if (accounts == null) {
+						List<Account> accountList = new ArrayList<Account>();
+						accountList.add(account);
+						accountMap.put(menuTitle, accountList);
 					}
 					else {
-						accountMap.get(className).add(account);
+						System.out.println(menuTitle);
+						accountMap.get(menuTitle).add(account);
 					}
 					
-					System.out.println("New " + title.toLowerCase() + " created.");
-					System.out.println("Press enter to continue.");
-					Input.getInput();
+					Console.printFormat("New %s created.\n", menuTitle.toLowerCase());
+					Input.waitForEnter();
 				}
 				else {
-					if (accountMap.get(className) != null) {
-						for(Account account : accountMap.get(className)) {
-							System.out.println("\n------- " + account.getAccountNumber() + " -------\n");
-							account.getClass().getMethod(subMenuActions[inputIndex]).invoke(account);
+					if (accounts != null) {
+						for(Account account : accounts) {
+							Console.printHeader("Account #" + String.valueOf(account.getAccountNumber()));
+							account.getClass().getMethod(method).invoke(account);
+							Input.waitForEnter();
 						}
 					}
 					else {
-						System.out.println("No open accounts.");
-						System.out.println("Press enter to continue.");
-						Input.getInput();
+						Console.printLine("No open accounts");
+						Input.waitForEnter();
 					}
 				}
-			}
-			else {
-				menuIndex = inputIndex;
 			}
 		}
 	}

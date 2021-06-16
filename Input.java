@@ -4,7 +4,12 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Input {
-
+	
+	public static void waitForEnter() {
+		System.out.println("Press enter to continue");
+		getInput();
+	}
+	
 	public static String getInput() {
 		return getInput(".*+");
 	}
@@ -20,11 +25,16 @@ public class Input {
 			validInput = Pattern.matches(pattern, input);
 			
 			if (!validInput) {
-				System.out.println("Invalid input. Please try again.");
+				Console.printLine("Invalid input: please try again");
 			}
 		} while (!validInput);
 		
 		return input;
+	}
+	
+	public static int getSelectionIndex(String[] items) {
+		int selection = Integer.parseInt(getInput("[1-" + items.length + "]+"));
+		return selection - 1;
 	}
 	
 }

@@ -2,10 +2,10 @@ package BankingApplication;
 
 public interface AccountInterface {
 	
-	void display();
+	void view();
 	void deposit();
 	void withdraw();
-	void initialize();
+	void edit();
 	
 	double calculateTax(double deposit);
 	double calculateInterest();

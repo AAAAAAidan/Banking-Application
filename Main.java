@@ -10,7 +10,6 @@ public class Main {
 	
 	// TODO
 	// Add comments
-	// Add account selection
 	// Add JSON save file
 	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, 
@@ -46,11 +45,11 @@ public class Main {
 			Console.printHeader(menuTitle);
 			Console.printList(menuChoices);
 			
-			int inputIndex = Input.getSelectionIndex(menuChoices);
+			int menuIndex = Input.getSelectionIndex(menuChoices);
 			
-			choice = menuChoices[inputIndex];
-			address = menuAddresses[inputIndex];
-			method = menuMethods[inputIndex];
+			choice = menuChoices[menuIndex];
+			address = menuAddresses[menuIndex];
+			method = menuMethods[menuIndex];
 			
 			if (choice == "Exit") {
 				Console.printHeader("Exiting Program");
@@ -62,9 +61,10 @@ public class Main {
 			else if (method != null) {
 				Console.printHeader(choice);
 				List<Account> accounts = accountMap.get(menuTitle);
+				Account account = null;
 				
 				if (method.equals(menuTitle.replaceAll(" ", ""))) {
-					Account account = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
+					account = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
 					
 					if (accounts == null) {
 						List<Account> accountList = new ArrayList<Account>();
@@ -81,7 +81,25 @@ public class Main {
 				}
 				else {
 					if (accounts != null) {
-						for(Account account : accounts) {
+						String accountMenuChoice = null;
+						int accountMenuIndex = 0;
+						
+						if (accounts.size() > 1) {
+							String[] accountMenuChoices = new String[accounts.size() + 1];
+							
+							for (int i = 0; i < accounts.size(); i++) {
+								String menuChoice = String.format("Account #%s ($%.2f)", accounts.get(i).getAccountNumber(), accounts.get(i).getBalance());
+								accountMenuChoices[i] = menuChoice;
+							}
+							
+							accountMenuChoices[accounts.size()] = "Back";
+							Console.printList(accountMenuChoices);
+							accountMenuIndex = Input.getSelectionIndex(accountMenuChoices);
+							accountMenuChoice = accountMenuChoices[accountMenuIndex];
+						}
+						
+						if (accountMenuChoice != "Back") {
+							account = accounts.get(accountMenuIndex);
 							Console.printHeader("Account #" + String.valueOf(account.getAccountNumber()));
 							account.getClass().getMethod(method).invoke(account);
 							Input.waitForEnter();

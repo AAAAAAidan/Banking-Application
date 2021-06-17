@@ -8,10 +8,6 @@ import java.util.List;
 
 public class Main {
 	
-	// TODO
-	// Add comments
-	// Add JSON save file
-	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, 
 												  IllegalArgumentException, InvocationTargetException, 
 												  NoSuchMethodException, SecurityException, ClassNotFoundException {
@@ -28,6 +24,9 @@ public class Main {
 		String address = "BankingApplication.Account";
 		String method = "view";
 		
+		// Begin looping through the menu system
+		// The menu system uses class addresses to keep track of which menu to use
+		// Menus accessed from their associated classes follow the format { ... {choice, method, address} ... }
 		while (address != null) {
 			Account menuClass = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
 			String menuTitle = (String) menuClass.getClass().getMethod("getMenuTitle").invoke(menuClass);
@@ -63,6 +62,7 @@ public class Main {
 				List<Account> accounts = accountMap.get(menuTitle);
 				Account account = null;
 				
+				// If the method calls for a new class instance
 				if (method.equals(menuTitle.replaceAll(" ", ""))) {
 					account = (Account) Class.forName(address).getDeclaredConstructor().newInstance();
 					
@@ -79,11 +79,13 @@ public class Main {
 					Console.printFormat("New %s created.\n", menuTitle.toLowerCase());
 					Input.waitForEnter();
 				}
+				// Else use one of the current class instances
 				else {
 					if (accounts != null) {
 						String accountMenuChoice = null;
 						int accountMenuIndex = 0;
 						
+						// If there are multiple accounts, then use an account selection menu
 						if (accounts.size() > 1) {
 							String[] accountMenuChoices = new String[accounts.size() + 1];
 							

@@ -38,6 +38,7 @@ public class CreditCard extends Account {
 		Console.print("Enter amount to pay: ");
 		double amount = Double.valueOf(Input.getInput("[0-9.]+"));
 		
+		// If the deposit would go past the credit limit
 		if (amount > this.calculateAmountDue()) {
 			amount = this.calculateAmountDue();
 		}
@@ -56,7 +57,7 @@ public class CreditCard extends Account {
 		Console.print("Enter amount to spend: ");
 		double amount = Double.valueOf(Input.getInput("[0-9.]+"));
 		
-		if (this.balance - amount >= 0) {
+		if (this.balance >= amount) {
 			this.balance -= amount;
 			Console.printFormat("Spent $%.2f\n", amount);
 		}

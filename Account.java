@@ -164,6 +164,7 @@ public class Account implements AccountInterface {
 		Console.printLine("Is this deposit part of your income? (y/n)");
 		String input = Input.getInput("[yYnN]");
 		
+		// If the deposit is part of financial income, then subtract tax
 		if (Pattern.matches("[yY]", input)) {
 			double tax = calculateTax(amount);
 			Console.printFormat("Taxed amount: $%.2f\n",  tax);

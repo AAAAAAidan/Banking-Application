@@ -20,6 +20,7 @@ public class Input {
 		String input;
 		boolean validInput;
 		
+		// Loop until input that fits the pattern is given
 		do {
 			input = scan.nextLine();
 			validInput = Pattern.matches(pattern, input);

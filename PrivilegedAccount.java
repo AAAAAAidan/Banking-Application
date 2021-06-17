@@ -4,7 +4,7 @@ public class PrivilegedAccount extends Account {
 	
 	protected static final String MENU_TITLE = "Privileged Account";
 	protected static final String[][] MENU_ITEMS = {
-			{"View privileged account balance", "BankingApplication.PrivilegedAccount", "view"},
+			{"View privileged account", "BankingApplication.PrivilegedAccount", "view"},
 			{"Deposit to privileged account", "BankingApplication.PrivilegedAccount", "deposit"},
 			{"Withdraw from privileged account", "BankingApplication.PrivilegedAccount", "withdraw"},
 			{"New privileged account", "BankingApplication.PrivilegedAccount", "PrivilegedAccount"},

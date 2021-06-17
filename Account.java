@@ -146,6 +146,7 @@ public class Account implements AccountInterface {
 		str += String.format("Bank name: %s\n", this.bankName);
 		str += String.format("Bank address: %s\n", this.bankAddress);
 		str += String.format("Routing number: #%s\n", this.routingNumber);
+		str += String.format("Account number: #%s\n", this.accountNumber);
 		str += String.format("Date created: %1$tF %1$tT %1$tZ\n", this.dateCreated);
 		return str;
 	}

@@ -4,7 +4,7 @@ public class SavingsAccount extends Account {
 	
 	protected static final String MENU_TITLE = "Savings Account";
 	protected static final String[][] MENU_ITEMS = {
-			{"View savings account balance", "BankingApplication.SavingsAccount", "view"},
+			{"View savings account", "BankingApplication.SavingsAccount", "view"},
 			{"Deposit to savings account", "BankingApplication.SavingsAccount", "deposit"},
 			{"Withdraw from savings account", "BankingApplication.SavingsAccount", "withdraw"},
 			{"New savings account", "BankingApplication.SavingsAccount", "SavingsAccount"},

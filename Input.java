@@ -33,7 +33,7 @@ public class Input {
 	}
 	
 	public static int getSelectionIndex(String[] items) {
-		int selection = Integer.parseInt(getInput("[1-" + items.length + "]+"));
+		int selection = Integer.parseInt(getInput("[1-" + items.length + "]"));
 		return selection - 1;
 	}
 	

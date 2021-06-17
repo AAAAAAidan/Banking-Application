@@ -6,7 +6,7 @@ public class CreditCard extends Account {
 	
 	protected static final String MENU_TITLE = "Credit Card";
 	protected static final String[][] MENU_ITEMS = {
-			{"View credit card balance", "BankingApplication.CreditCard", "view"},
+			{"View credit card", "BankingApplication.CreditCard", "view"},
 			{"Pay off due balance", "BankingApplication.CreditCard", "deposit"},
 			{"Spend with credit card", "BankingApplication.CreditCard", "withdraw"},
 			{"Change credit limit", "BankingApplication.CreditCard", "edit"},

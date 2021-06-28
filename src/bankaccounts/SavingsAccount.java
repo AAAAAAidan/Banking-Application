@@ -1,4 +1,4 @@
-package BankingApplication;
+package bankaccounts;
 
 public class SavingsAccount extends Account {
 	

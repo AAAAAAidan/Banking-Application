@@ -1,4 +1,4 @@
-package BankingApplication;
+package myutilities;
 
 public class Console {
 	

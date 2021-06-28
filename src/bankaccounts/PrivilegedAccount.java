@@ -1,4 +1,7 @@
-package BankingApplication;
+package bankaccounts;
+
+import myutilities.Console;
+import myutilities.Input;
 
 public class PrivilegedAccount extends Account {
 	

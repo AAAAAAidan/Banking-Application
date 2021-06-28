@@ -1,4 +1,4 @@
-package BankingApplication;
+package myutilities;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;

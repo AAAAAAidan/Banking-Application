@@ -1,7 +1,7 @@
-package bankaccounts;
+package account;
 
-import myutilities.Console;
-import myutilities.Input;
+import util.Console;
+import util.Input;
 
 public class CreditCard extends Account {
 	
@@ -9,11 +9,11 @@ public class CreditCard extends Account {
 	
 	protected static final String MENU_TITLE = "Credit Card";
 	protected static final String[][] MENU_ITEMS = {
-			{"View credit card", "BankingApplication.CreditCard", "view"},
-			{"Pay off due balance", "BankingApplication.CreditCard", "deposit"},
-			{"Spend with credit card", "BankingApplication.CreditCard", "withdraw"},
-			{"Change credit limit", "BankingApplication.CreditCard", "edit"},
-			{"New credit card", "BankingApplication.CreditCard", "CreditCard"},
+			{"View credit card", DIRECTORY + "CreditCard", "view"},
+			{"Pay off due balance", DIRECTORY + "CreditCard", "deposit"},
+			{"Spend with credit card", DIRECTORY + "CreditCard", "withdraw"},
+			{"Change credit limit", DIRECTORY + "CreditCard", "edit"},
+			{"New credit card", DIRECTORY + "CreditCard", "CreditCard"},
 			{"Back", null, null}
 		};
 	

@@ -1,4 +1,4 @@
-package myutilities;
+package util;
 
 public class Console {
 	

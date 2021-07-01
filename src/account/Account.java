@@ -1,10 +1,10 @@
-package bankaccounts;
+package account;
 
 import java.util.Date;
 import java.util.regex.Pattern;
 
-import myutilities.Console;
-import myutilities.Input;
+import util.Console;
+import util.Input;
 
 public class Account implements AccountInterface {
 	
@@ -21,13 +21,14 @@ public class Account implements AccountInterface {
 	protected static final double INTEREST_RATE = 0.0039; // 0.39%
 	protected static final double TAX_RATE = 0.061; // 6.1%
 	protected static final String MENU_TITLE = "Banking Application";
+	protected static final String DIRECTORY = "account.";
 	protected static final String[][] MENU_ITEMS = {
-			{"Manage checking accounts", "BankingApplication.CheckingAccount", null},
-			{"Manage savings accounts", "BankingApplication.SavingsAccount", null},
-			{"Manage privileged accounts", "BankingApplication.PrivilegedAccount", null},
-			{"Manage credit cards", "BankingApplication.CreditCard", null},
-			{"View account information", "BankingApplication.Account", "view"},
-			{"Edit account information", "BankingApplication.Account", "edit"},
+			{"Manage checking accounts", DIRECTORY + "CheckingAccount", null},
+			{"Manage savings accounts", DIRECTORY + "SavingsAccount", null},
+			{"Manage privileged accounts", DIRECTORY + "PrivilegedAccount", null},
+			{"Manage credit cards", DIRECTORY + "CreditCard", null},
+			{"View account information", DIRECTORY + "Account", "view"},
+			{"Edit account information", DIRECTORY + "Account", "edit"},
 			{"Exit", null, null}
 		};
 	
@@ -134,6 +135,10 @@ public class Account implements AccountInterface {
 	
 	public static String getMenuTitle() {
 		return MENU_TITLE;
+	}
+	
+	public static String getDirectory() {
+		return DIRECTORY;
 	}
 	
 	public static String[][] getMenuItems() {

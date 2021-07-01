@@ -1,4 +1,4 @@
-package bankaccounts;
+package account;
 
 public interface AccountInterface {
 	

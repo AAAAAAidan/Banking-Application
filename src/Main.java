@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import bankaccounts.Account;
+import account.Account;
 
-import myutilities.Console;
-import myutilities.Input;
+import util.Console;
+import util.Input;
 
 public class Main {
 	
@@ -24,7 +24,7 @@ public class Main {
 		accountMap.put(Account.getMenuTitle(), Arrays.asList(newMainAccount));
 		
 		String choice = null;
-		String address = "BankingApplication.Account";
+		String address = Account.getDirectory() + "Account";
 		String method = "view";
 		
 		// Begin looping through the menu system
@@ -58,7 +58,7 @@ public class Main {
 				address = null;
 			}
 			else if (choice == "Back") {
-				address = "BankingApplication.Account";
+				address = Account.getDirectory() + "Account";
 			}
 			else if (method != null) {
 				Console.printHeader(choice);

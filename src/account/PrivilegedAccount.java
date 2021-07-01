@@ -1,16 +1,16 @@
-package bankaccounts;
+package account;
 
-import myutilities.Console;
-import myutilities.Input;
+import util.Console;
+import util.Input;
 
 public class PrivilegedAccount extends Account {
 	
 	protected static final String MENU_TITLE = "Privileged Account";
 	protected static final String[][] MENU_ITEMS = {
-			{"View privileged account", "BankingApplication.PrivilegedAccount", "view"},
-			{"Deposit to privileged account", "BankingApplication.PrivilegedAccount", "deposit"},
-			{"Withdraw from privileged account", "BankingApplication.PrivilegedAccount", "withdraw"},
-			{"New privileged account", "BankingApplication.PrivilegedAccount", "PrivilegedAccount"},
+			{"View privileged account", DIRECTORY + "PrivilegedAccount", "view"},
+			{"Deposit to privileged account", DIRECTORY + "PrivilegedAccount", "deposit"},
+			{"Withdraw from privileged account", DIRECTORY + "PrivilegedAccount", "withdraw"},
+			{"New privileged account", DIRECTORY + "PrivilegedAccount", "PrivilegedAccount"},
 			{"Back", null, null}
 		};
 	

@@ -1,4 +1,4 @@
-package myutilities;
+package util;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;

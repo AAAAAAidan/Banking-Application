@@ -1,13 +1,13 @@
-package bankaccounts;
+package account;
 
 public class SavingsAccount extends Account {
 	
 	protected static final String MENU_TITLE = "Savings Account";
 	protected static final String[][] MENU_ITEMS = {
-			{"View savings account", "BankingApplication.SavingsAccount", "view"},
-			{"Deposit to savings account", "BankingApplication.SavingsAccount", "deposit"},
-			{"Withdraw from savings account", "BankingApplication.SavingsAccount", "withdraw"},
-			{"New savings account", "BankingApplication.SavingsAccount", "SavingsAccount"},
+			{"View savings account", DIRECTORY + "SavingsAccount", "view"},
+			{"Deposit to savings account", DIRECTORY + "SavingsAccount", "deposit"},
+			{"Withdraw from savings account", DIRECTORY + "SavingsAccount", "withdraw"},
+			{"New savings account", DIRECTORY + "SavingsAccount", "SavingsAccount"},
 			{"Back", null, null}
 		};
 	

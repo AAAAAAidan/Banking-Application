@@ -1,5 +1,3 @@
-package runner;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,9 +10,9 @@ import util.Input;
 
 public class Main {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException,
-												  IllegalArgumentException, InvocationTargetException,
-												  NoSuchMethodException, SecurityException, ClassNotFoundException {
+	public static void main(String[] args) throws InstantiationException, 
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException, ClassNotFoundException {
 
 		HashMap<String, List<Account>> accountMap = new HashMap<String, List<Account>>();
 

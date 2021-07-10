@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 public class Input {
 	
+	private static Scanner scan = new Scanner(System.in);
+	
 	public static void waitForEnter() {
 		System.out.println("Press enter to continue");
 		getInput();
@@ -16,7 +18,6 @@ public class Input {
 	
 	public static String getInput(String pattern) {
 		
-		Scanner scan = new Scanner(System.in);
 		String input;
 		boolean validInput;
 		

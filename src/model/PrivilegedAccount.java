@@ -1,4 +1,4 @@
-package account;
+package model;
 
 import util.Console;
 import util.Input;

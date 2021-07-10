@@ -1,4 +1,4 @@
-package account;
+package model;
 
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -21,7 +21,7 @@ public class Account implements AccountInterface {
 	protected static final double INTEREST_RATE = 0.0039; // 0.39%
 	protected static final double TAX_RATE = 0.061; // 6.1%
 	protected static final String MENU_TITLE = "Banking Application";
-	protected static final String DIRECTORY = "account.";
+	protected static final String DIRECTORY = "model.";
 	protected static final String[][] MENU_ITEMS = {
 			{"Manage checking accounts", DIRECTORY + "CheckingAccount", null},
 			{"Manage savings accounts", DIRECTORY + "SavingsAccount", null},
